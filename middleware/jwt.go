@@ -76,7 +76,7 @@ func JwtToken() gin.HandlerFunc{
 			return
 		}
 
-		c.Set("user_num", claims.Admin_num)
+		c.Set("admin_num", claims.Admin_num)
 		c.Next()
 	}
 }

@@ -14,17 +14,21 @@ func InitRouter() {
 		r.POST("/admin/regist",api.Regist)
 
 
-	 router:=r.Group("admin")
+	 router:=r.Group("admin")//管理员
 	 router.Use(middleware.JwtToken())
 	 {
 		 router.GET("getmainpage",api.Getmainpage)	//获取主页面
+		 router.POST("appraise/:student_num",api.Appraise)	 // 评价
 
-		 //todo 评价
-		 router.POST("appraise/:student_num",api.Appraise)
-		 //todo 权限管理
+		 superadmin:=router.Group("superadmin")//超级管理员
+
+		 superadmin.Use(middleware.Checkpower())
+		 {
+			 superadmin.GET("getadminpage",api.Getadminpage)	//获取所有管理员界面
+			 superadmin.POST("changepower",api.Changepower)		//修改权限
+		 }
+
 
 	 }
-
-
 		r.Run(utils.HttpPort)
 }

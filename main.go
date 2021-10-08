@@ -9,6 +9,7 @@ import (
 func main(){
 
 	model.IntDb()
+	//model.Intcasbin()
 	routes.InitRouter()
 
 }

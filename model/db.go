@@ -3,6 +3,7 @@ package model
 import (
 	"ACAT/utils"
 	"fmt"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
@@ -27,7 +28,16 @@ func IntDb(){
 		fmt.Println("连接数据库出错：",err)
 	}
 
-	Db.AutoMigrate(&Admin{},&Student{},&Interview{})
+	_=Db.AutoMigrate(&Admin{},&Student{},&Interview{})
+	_=Db.AutoMigrate(gormadapter.CasbinRule{})
+
+	//初始化策略数据库
+	err := Db.Create(&utils.Carbines).Error
+	if err!=nil{
+		fmt.Println(err)
+		return
+	}
+
 
 	sqlDB, _:= Db.DB()
 	//设置连接池u中的最大闲置连接数

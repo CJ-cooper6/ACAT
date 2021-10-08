@@ -21,6 +21,9 @@ func Login(c *gin.Context){
 	if code==errmsg.Success{
 		token,code=middleware.SetToken(admin.Admin_Num)
 	}
+
+
+
 	c.JSON(
 		http.StatusOK, gin.H{
 			"status":  code,

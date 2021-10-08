@@ -12,7 +12,6 @@ import (
 
 func Getmainpage(c *gin.Context){	//TODO 主页面
 	var admin model.Admin
-
 	 var(
 		 list []model.Interview
 		 total int64
@@ -23,7 +22,6 @@ func Getmainpage(c *gin.Context){	//TODO 主页面
 	admin.Admin_Num=n.(string)
 	admin.Role=dao.CheckRole(admin.Admin_Num)	//获得角色
 
-
 	pageSize,_:=strconv.Atoi(c.Query("pagesize"))
 	pageNum,_:=strconv.Atoi(c.Query("pagenum"))
 	if pageSize == 0{
@@ -33,7 +31,6 @@ func Getmainpage(c *gin.Context){	//TODO 主页面
 		pageNum = -1
 	}
 
-
 	switch admin.Role {
 	case 0:
 		list,code,total=nil,errmsg.Success,0
@@ -41,9 +38,7 @@ func Getmainpage(c *gin.Context){	//TODO 主页面
 		list,code,total=dao.Getmainpage(pageSize,pageNum)
 	default:		//返回相对应方向的学生信息
 		list,code,total=dao.Getappoint(admin.Role,pageSize,pageNum)
-
 	}
-
 	c.JSON(
 		http.StatusOK, gin.H{
 			"status":  code,
@@ -52,4 +47,26 @@ func Getmainpage(c *gin.Context){	//TODO 主页面
 			"message": errmsg.Geterrmsg(code),
 		},
 	)
+}
+
+func Getadminpage(c *gin.Context){	//获取管理员的页面
+
+	pageSize,_:=strconv.Atoi(c.Query("pagesize"))
+	pageNum,_:=strconv.Atoi(c.Query("pagenum"))
+	if pageSize == 0{
+		pageSize = -1
+	}
+	if pageNum == 0{
+		pageNum = -1
+	}
+	admins,code,total:=dao.Getadminpage(pageSize,pageNum)
+	c.JSON(
+		http.StatusOK, gin.H{
+			"status":  code,
+			"admins":admins,
+			"total":total,
+			"message": errmsg.Geterrmsg(code),
+		},
+	)
+
 }
