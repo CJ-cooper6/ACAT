@@ -12,3 +12,10 @@ type Admin struct { //管理员信息表
 	Role 		   int `gorm:"type:int(10);DEFAULT:0" json:"role"`				   //角色
 }
 
+
+
+type Admins struct {
+	Admin_Num  string `json:"admin_num"`
+	Admin_Name string `json:"admin_name"`
+	Role       int    `json:"role"`
+}
