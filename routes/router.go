@@ -7,8 +7,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 func InitRouter() {
-	 r := gin.Default()
-	r.Use(middleware.CORS())
+	gin.SetMode(utils.AppMode)
+	 r := gin.New()
+	 r.Use(middleware.Logger())
+	 r.Use(gin.Recovery())
+	 r.Use(middleware.CORS())
 		r.POST("api/admin/login",api.Login)
 		r.POST("api/admin/regist",api.Regist)
 

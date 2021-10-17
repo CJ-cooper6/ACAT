@@ -1,0 +1,1 @@
+time="2021-10-17 14:56:20" level=info Agent=PostmanRuntime/7.26.8 DataSize=201 HostName=DESKTOP-EA3K7EF Ip=127.0.0.1 Method=POST Path=/api/admin/login SpendTime="42 ms" status=200
