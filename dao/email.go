@@ -5,7 +5,7 @@ import (
 )
 
 func Checkemail(student_num int)string {
-	var student model.Student
-	model.Db.Where("student_num = ?", student_num).First(&student)
-	return student.Student_email
+	var s model.Interview
+	model.Db.Where("student_num = ?", student_num).First(&s)
+	return s.Student_email
 }

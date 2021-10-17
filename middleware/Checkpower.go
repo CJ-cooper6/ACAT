@@ -15,7 +15,6 @@ func Checkpower()gin.HandlerFunc{		//检查是否有超级管理员的权限
 		ok, _:= utils.E.Enforce(admin_num,c.Request.URL.Path,"change")
 		if ok == true {
 			// 有权限
-
 			c.Next()
 		} else {
 			// 拒绝请求，抛出异常

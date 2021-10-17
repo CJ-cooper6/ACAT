@@ -16,6 +16,7 @@ const(
 	Error_Token_Wrong=1006
 	Error_Token_Type_Wrong=1007
 	Error_No_Power = 1008
+	Error_Fail_Email=1009
 
 )
 
@@ -30,6 +31,7 @@ var codemsg =map[int]string{
 	Error_Token_Wrong: "Token不正确",
 	Error_Token_Type_Wrong: "Token格式错误",
 	Error_No_Power:"没有权限",
+	Error_Fail_Email:"发送邮箱失败",
 
 }
 

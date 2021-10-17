@@ -27,18 +27,7 @@ func SaveAdmin(admin *model.Admin){	//注册管理员信息
 	}
 }
 
-func ScryotPW(password string)string{	//密码加密
-	const Kenlen =10
-	salt := make([]byte,8)
-	salt = []byte{12,32,4,6,66,22,222,12}
-	HashPW,err:=scrypt.Key([]byte(password),salt,16384,8,1,Kenlen)
-	if err != nil{
-		log.Fatal(err)
-	}
-	fpw:=base64.StdEncoding.EncodeToString(HashPW)
-	return fpw
 
-}
 
 func CheckLogin(admin_num string,password string)int{	//检查学号密码是否正确
 	var admin model.Admin
@@ -51,6 +40,18 @@ func CheckLogin(admin_num string,password string)int{	//检查学号密码是否
 	}
 
 	return errmsg.Success
+}
+
+func ScryotPW(password string)string{	//密码加密
+	const Kenlen =10
+	salt := make([]byte,8)
+	salt = []byte{12,32,4,6,66,22,222,12}
+	HashPW,err:=scrypt.Key([]byte(password),salt,16384,8,1,Kenlen)
+	if err != nil{
+		log.Fatal(err)
+	}
+	fpw:=base64.StdEncoding.EncodeToString(HashPW)
+	return fpw
 }
 
 func CheckRole(admin_num string)int{

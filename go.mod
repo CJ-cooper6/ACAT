@@ -7,7 +7,7 @@ require (
 	github.com/casbin/gorm-adapter/v3 v3.4.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.4
-	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df // indirect
+	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/kr/pretty v0.2.0 // indirect

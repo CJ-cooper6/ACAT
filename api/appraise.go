@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-func Appraise(c *gin.Context){
+func Appraise(c *gin.Context){		//评价
 	var interview model.Interview
 	//获取被评价者学号
 	student_num,_:= strconv.Atoi(c.Param("student_num"))
@@ -27,4 +27,16 @@ code:=dao.ChangeInterview_State(student_num,2)
 		},
 	)
 
+}
+
+func Getappraise(c *gin.Context){
+	student_num,_:= strconv.Atoi(c.Param("student_num"))
+	view,code:=dao.Getappraise(student_num)
+	c.JSON(
+		http.StatusOK, gin.H{
+			"view":view,
+			"status":  code,
+			"message": errmsg.Geterrmsg(code),
+		},
+	)
 }

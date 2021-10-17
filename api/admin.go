@@ -22,8 +22,6 @@ func Login(c *gin.Context){
 		token,code=middleware.SetToken(admin.Admin_Num)
 	}
 
-
-
 	c.JSON(
 		http.StatusOK, gin.H{
 			"status":  code,

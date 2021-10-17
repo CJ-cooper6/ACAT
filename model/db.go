@@ -28,8 +28,12 @@ func IntDb(){
 		fmt.Println("连接数据库出错：",err)
 	}
 
-	_=Db.AutoMigrate(&Admin{},&Student{},&Interview{})
+	_=Db.Set("gorm:table_options"," DEFAULT CHARSET=utf8;").AutoMigrate(&Admin{},&Student{},&Interview{})
 	_=Db.AutoMigrate(gormadapter.CasbinRule{})
+
+	//添加超级管理员
+	admin:=Admin{Admin_Name:"admin", Admin_Num:"admin123", Admin_Password:"i9Ag+CXDn3/Www==", Role:1}	//密码为123456
+	Db.Create(&admin)
 
 	//初始化策略数据库
 	err := Db.Create(&utils.Carbines).Error
@@ -37,7 +41,6 @@ func IntDb(){
 		fmt.Println(err)
 		return
 	}
-
 
 	sqlDB, _:= Db.DB()
 	//设置连接池u中的最大闲置连接数
