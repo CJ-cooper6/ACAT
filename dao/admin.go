@@ -29,17 +29,17 @@ func SaveAdmin(admin *model.Admin){	//注册管理员信息
 
 
 
-func CheckLogin(admin_num string,password string)int{	//检查学号密码是否正确
+func CheckLogin(admin_num string,password string)(int,string){	//检查学号密码是否正确
 	var admin model.Admin
 	model.Db.Where("admin_num = ?",admin_num).First(&admin)
 	if admin.ID == 0{
-		return errmsg.Error_Admin_No_Right
+		return errmsg.Error_Admin_No_Right,""
 	}
 	if ScryotPW(password)!=admin.Admin_Password{
-		return errmsg.Error_AdminPassword_Wrong
+		return errmsg.Error_AdminPassword_Wrong,""
 	}
 
-	return errmsg.Success
+	return errmsg.Success,admin.Admin_Name
 }
 
 func ScryotPW(password string)string{	//密码加密
@@ -61,3 +61,8 @@ func CheckRole(admin_num string)int{
 return admin.Role
 
 }
+
+
+
+
+

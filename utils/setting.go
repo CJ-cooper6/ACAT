@@ -21,6 +21,8 @@ var(
 	DbName string
 	CasbinDbName string
 
+
+
 )
 
 var E *casbin.Enforcer
@@ -56,3 +58,4 @@ func LoadDb(file *ini.File){
 	DbName =file.Section("database").Key("DbName").MustString("ACAT")
 	CasbinDbName =file.Section("database").Key("CasbinDbName").MustString("casbin")
 }
+

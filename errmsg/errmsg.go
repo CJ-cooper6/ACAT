@@ -32,7 +32,6 @@ var codemsg =map[int]string{
 	Error_Token_Type_Wrong: "Token格式错误",
 	Error_No_Power:"没有权限",
 	Error_Fail_Email:"发送邮箱失败",
-
 }
 
 func Geterrmsg(code int)string{

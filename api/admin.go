@@ -16,7 +16,7 @@ func Login(c *gin.Context){
 	var admin model.Admin
 	var token string
 	_=c.ShouldBindJSON(&admin)
-	code:=dao.CheckLogin(admin.Admin_Num,admin.Admin_Password)
+	code,admin_name:=dao.CheckLogin(admin.Admin_Num,admin.Admin_Password)
 
 	if code==errmsg.Success{
 		token,code=middleware.SetToken(admin.Admin_Num)
@@ -24,6 +24,7 @@ func Login(c *gin.Context){
 
 	c.JSON(
 		http.StatusOK, gin.H{
+			"admin_name":admin_name,
 			"status":  code,
 			"token":token,
 			"message": errmsg.Geterrmsg(code),
