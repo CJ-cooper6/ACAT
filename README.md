@@ -1,4 +1,4 @@
-# 西安邮电大学-ACAT计算机应用技术协会-纳新后台系统后端部分
+# 西安邮电大学-ACAT计算机应用技术协会-纳新系统后台后端部分
 
 
 
@@ -19,8 +19,8 @@
 ├─dist			(Vue打包文件)
 ├─errmsg		(错误处理)
 ├─log			(日志文件)
-├─middleware	        (中间件层)  
-├─model		        (模型层)
+├─middleware	(中间件层)  
+├─model		    (模型层)
 ├─routes		(路由层) 
 ├─server		(部分功能函数)
 └─utils			(初始化内容)
@@ -31,7 +31,7 @@
 
 ### 实现功能
 
-1. 用户密码加密存储
+1. 登陆注册，用户密码加密存储
 2. JWT认证
 3. 基于Casbin的权限管理
 4. 列表分页
@@ -44,6 +44,7 @@
 
 - Golang
   - Gin
+  - Gorm
   - jwt-go
   - go-mail
   - go-ini
@@ -58,7 +59,33 @@
 
 - 登录界面
 
-![image-20211017163428480](https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211017163428480.png)
+![](https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211017163428480.png)
+
+- 学员信息
+
+<img src="https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211025190846446.png" alt="image-20211025190846446" style="zoom: 33%;" />
+
+
+
+
+
+- 授权页面
+
+<img src="https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211025190750655.png" alt="image-20211025190750655" style="zoom:33%;" />
+
+
+
+
+
+
+
+- 发送邮箱
+
+<img src="https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211025190714569.png" alt="image-20211025190714569" style="zoom:33%;" />
+
+
+
+
 
 ### 部分接口文档
 
@@ -73,6 +100,10 @@ https://www.showdoc.com.cn/1637571656793053
 登录实验室服务器，在/etc/nginx目录下修改nginx.conf文件
 
 ![image-20211017164119201](https://gitee.com/CJ-cooper6/picgo/raw/master/image-20211017164119201.png)
+
+
+
+
 
 根据需要选择自己的端口
 
@@ -152,7 +183,9 @@ http://192.168.1.197:7300
 
 ### 不足
 
-数据库设计感觉不太好，重复字段过多，之后应使用联结或合成一张表
+- 数据库设计感觉不太好，重复字段过多，之后应使用联结查询或合成一张表
+
+- 没有使用事务保证数据的可靠，而是判断每条sql语句是否出错返回报错，没有回滚
 
 
 
@@ -160,5 +193,5 @@ http://192.168.1.197:7300
 
 感谢JetBrains免费开源授权
 
-<img src="https://gitee.com/wejectchan/ginblog/raw/master/upload/jet.png" alt="img" style="zoom: 25%;" />
+<img src="https://gitee.com/wejectchan/ginblog/raw/master/upload/jet.png" alt="img" style="zoom: 10%;" />
 
